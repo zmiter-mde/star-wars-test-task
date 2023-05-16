@@ -1,56 +1,18 @@
-import logo from "./logo.svg"
-import { Counter } from "./features/counter/Counter"
+import { Navigate, Route, Routes } from "react-router-dom"
 import "./App.css"
+import Container from "@mui/material/Container"
+import { Heroes } from "./features/heroes/components/Heroes"
+import { Hero } from "./features/heroes/components/Hero"
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Container maxWidth="md">
+      <Routes>
+        <Route path="/heroes/:heroId" element={<Hero />} />
+        <Route path="/heroes" element={<Heroes />} />
+        <Route path="/" element={<Navigate to="/heroes" replace />} />
+      </Routes>
+    </Container>
   )
 }
 
