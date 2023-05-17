@@ -1,19 +1,20 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import "./App.css"
 import Container from "@mui/material/Container"
-import { Heroes } from "./features/heroes/components/Heroes"
-import { Hero } from "./features/heroes/components/Hero"
+import { HeroesPage } from "./pages/HeroesPage"
+import { HeroPage } from "./pages/HeroPage"
+import { ErrorPage } from "./pages/ErrorPage"
+import { Header } from "./components/header/Header"
 
-const App = () => {
-  return (
-    <Container maxWidth="md">
-      <Routes>
-        <Route path="/heroes/:heroId" element={<Hero />} />
-        <Route path="/heroes" element={<Heroes />} />
-        <Route path="/" element={<Navigate to="/heroes" replace />} />
-      </Routes>
-    </Container>
-  )
-}
+const App = () => (
+  <Container maxWidth="md">
+    <Header />
+    <Routes>
+      <Route path="/heroes/:heroId" element={<HeroPage />} />
+      <Route path="/heroes" element={<HeroesPage />} />
+      <Route path="/error" element={<ErrorPage />} />
+      <Route path="/*" element={<Navigate to="/heroes" replace />} />
+    </Routes>
+  </Container>
+)
 
 export default App

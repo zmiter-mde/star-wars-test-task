@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useMemo } from "react"
 import { styled, alpha } from "@mui/material/styles"
-import AppBar from "@mui/material/AppBar"
-import Box from "@mui/material/Box"
-import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import debounce from "lodash.debounce"
@@ -21,7 +17,7 @@ const Search = styled("div")(({ theme }) => ({
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
+    marginLeft: "auto",
     width: "auto",
   },
 }))
@@ -75,31 +71,16 @@ const SearchBar = () => {
   }, [])
 
   return (
-    // TODO: move texts to i18n files
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            Star wars heroes
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={debouncedChangeHandler}
-            />
-          </Search>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <Search>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ "aria-label": "search" }}
+        onChange={debouncedChangeHandler}
+      />
+    </Search>
   )
 }
 

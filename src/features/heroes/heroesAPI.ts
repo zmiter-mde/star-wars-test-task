@@ -8,6 +8,9 @@ export interface Hero {
   id: string
   url: string
   name: string
+  height: number
+  mass: number
+  homeworld: string
 }
 
 export interface FetchHeroesParams {
@@ -55,7 +58,7 @@ const fetchHero = async (id: string): Promise<Hero> => {
 }
 
 const updateHero = async (hero: Hero): Promise<Hero> => {
-  // TODO: make a request to backend
+  // TODO: (never) make a request to backend
 
   return hero
 }
