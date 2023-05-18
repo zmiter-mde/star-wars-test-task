@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography"
 import { styled } from "@mui/material/styles"
 import { shadow } from "../../features/heroes/util"
 import { SearchBar } from "../searchBar/SearchBar"
-import { Lightsaber } from "../lightsaber/Lightsaber"
+import { Lightsaber } from "../Lightsaber/Lightsaber"
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   flexDirection: "column",
