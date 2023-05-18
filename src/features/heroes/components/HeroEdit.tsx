@@ -32,11 +32,11 @@ const StyledForm = styled("form")(({ theme }) => ({
 }))
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
-  margin: theme.spacing(2, "auto"),
+  margin: theme.spacing(4, "auto"),
   backgroundColor: theme.palette.common.black,
   color: theme.palette.common.white,
   [theme.breakpoints.up("sm")]: {
-    margin: theme.spacing(3, "auto"),
+    margin: theme.spacing(4, "auto"),
   },
   "& fieldset": { border: "none" },
   "& input": {
@@ -52,6 +52,10 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     color: theme.palette.common.white,
     "&.Mui-focused": {
       color: theme.palette.common.white,
+    },
+    "&.MuiInputLabel-shrink": {
+      position: "absolute",
+      top: theme.spacing(-2),
     },
   },
   "> p.Mui-error": {
