@@ -11,6 +11,7 @@ import {
   setCurrentPage,
   selectRequestStatus,
 } from "../heroesSlice"
+import { shadow } from "../util"
 
 const StyledPagination = styled(Pagination)(({ theme }) => ({
   display: "flex",
@@ -21,8 +22,14 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
 const StyledPaginationItem = styled(PaginationItem)(({ theme }) => ({
   color: theme.palette.common.white,
   backgroundColor: theme.palette.common.black,
-  boxShadow:
-    "0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px blue, 0 0 25px blue",
+  margin: theme.spacing(1, 1),
+  boxShadow: shadow("blue"),
+  "&.Mui-selected": {
+    boxShadow: shadow("red"),
+  },
+  "&:hover": {
+    boxShadow: shadow("green"),
+  },
 }))
 
 const HeroesPagination = () => {

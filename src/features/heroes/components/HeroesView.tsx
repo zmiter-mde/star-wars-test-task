@@ -1,15 +1,18 @@
 import { Grid, styled, Paper } from "@mui/material"
 import { Hero } from "../heroesAPI"
+import { shadow } from "../util"
 
 const HeroItem = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
+  ...theme.typography.body1,
   padding: theme.spacing(2),
   margin: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
   cursor: "pointer",
-  boxShadow:
-    "0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px blue, 0 0 25px blue",
+  boxShadow: shadow("blue"),
+  "&:hover": {
+    boxShadow: shadow("green"),
+  },
 }))
 
 interface HeroesProps {

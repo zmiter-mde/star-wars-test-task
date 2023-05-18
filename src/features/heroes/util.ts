@@ -27,4 +27,7 @@ const mergeHeroes = (remoteHeroes: Hero[], localHeroes: Hero[]) => {
   return updatedHeroes
 }
 
-export { prepareHeroesIds, mergeHeroes }
+const shadow = (color: string) =>
+  `0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px ${color}, 0 0 25px ${color}`
+
+export { prepareHeroesIds, mergeHeroes, shadow }

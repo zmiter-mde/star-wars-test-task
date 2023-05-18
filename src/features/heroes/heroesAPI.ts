@@ -2,6 +2,7 @@ import axios from "axios"
 
 // TODO: switch to RTKQuery?
 const baseUrl = "https://swapi.dev/api/"
+// TODO: (never) API doesn't allow limiting atm.
 const DEFAULT_LIMIT = 10
 
 export interface Hero {

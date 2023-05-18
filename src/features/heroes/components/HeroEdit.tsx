@@ -8,6 +8,7 @@ import { Button, TextField, styled } from "@mui/material"
 import { useAppDispatch } from "../../../app/hooks"
 import { updateHeroById } from "../heroesSlice"
 import { Hero } from "../heroesAPI"
+import { shadow } from "../util"
 
 const validationSchema = yup.object({
   name: yup.string().required("Name is required"),
@@ -31,37 +32,43 @@ const StyledForm = styled("form")(({ theme }) => ({
 }))
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
-  margin: theme.spacing(1, "auto"),
-  backgroundColor: theme.palette.common.white,
+  margin: theme.spacing(2, "auto"),
+  backgroundColor: theme.palette.common.black,
+  color: theme.palette.common.white,
   [theme.breakpoints.up("sm")]: {
-    margin: theme.spacing(2, "auto"),
+    margin: theme.spacing(3, "auto"),
   },
   "& fieldset": { border: "none" },
   "& input": {
-    boxShadow:
-      "0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px blue, 0 0 25px blue",
+    color: theme.palette.common.white,
+    boxShadow: shadow("blue"),
     "&:focus": {
-      boxShadow:
-        "0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px green, 0 0 25px green",
+      boxShadow: shadow("green"),
     },
   },
   "> label": {
-    color: theme.palette.common.black,
+    fontSize: theme.typography.h6.fontSize,
+    color: theme.palette.common.white,
     "&.Mui-focused": {
-      color: theme.palette.common.black,
+      color: theme.palette.common.white,
     },
+  },
+  "> p.Mui-error": {
+    position: "absolute",
+    top: "100%",
+    fontSize: theme.typography.body1.fontSize,
   },
 }))
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(2),
+  fontFamily: "'Star Wars', sans-serif",
+  color: "#EEDB00",
+  marginTop: theme.spacing(3),
   backgroundColor: theme.palette.common.black,
-  boxShadow:
-    "0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px blue, 0 0 25px blue",
+  boxShadow: shadow("blue"),
   "&:hover": {
     backgroundColor: theme.palette.common.black,
-    boxShadow:
-      "0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px green, 0 0 25px green",
+    boxShadow: shadow("green"),
   },
 }))
 

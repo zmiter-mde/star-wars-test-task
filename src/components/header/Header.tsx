@@ -3,22 +3,35 @@ import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
-import MenuItem from "@mui/material/MenuItem"
 import { styled } from "@mui/material/styles"
+import { shadow } from "../../features/heroes/util"
 import { SearchBar } from "../searchBar/SearchBar"
-import { Lightsaber } from "../Lightsaber/Lightsaber"
+import { Lightsaber } from "../lightsaber/Lightsaber"
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   flexDirection: "column",
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(3),
   padding: theme.spacing(2),
   backgroundColor: theme.palette.common.black,
-  boxShadow:
-    "0 0 5px #fff,0 0 8px #fff,0 0 12px #fff,0 0 15px blue,0 0 25px blue",
+  boxShadow: shadow("blue"),
   borderRadius: "7px",
   [theme.breakpoints.up("sm")]: {
     flexDirection: "row",
-    marginBottom: 0,
+    justifyContent: "space-between",
+  },
+}))
+
+const StyledLink = styled(Link)(({ theme }) => ({
+  textDecoration: "none",
+  border: "none",
+  borderRadius: "7px",
+  padding: theme.spacing(0.5, 2),
+  "&:hover": {
+    boxShadow: shadow("green"),
+  },
+  "> div": {
+    fontFamily: "'Star Wars', sans-serif",
+    color: "#EEDB00",
   },
 }))
 
@@ -28,9 +41,12 @@ const Header = () => {
     // TODO: move texts to i18n files
     <Box sx={{ flexGrow: 1 }}>
       <Lightsaber />
-      <AppBar position="static" sx={{ backgroundColor: "black" }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "black", marginTop: "100px" }}
+      >
         <StyledToolbar>
-          <MenuItem component={Link} to={"/heroes"}>
+          <StyledLink to="/heroes">
             <Typography
               variant="h6"
               noWrap
@@ -39,8 +55,21 @@ const Header = () => {
             >
               Star Wars Heroes
             </Typography>
-          </MenuItem>
-          {pathname === "/heroes" && <SearchBar />}
+          </StyledLink>
+          {pathname === "/heroes" ? (
+            <SearchBar />
+          ) : (
+            <StyledLink to="/heroes">
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, width: { xs: "100%", sm: "auto" } }}
+              >
+                Back
+              </Typography>
+            </StyledLink>
+          )}
         </StyledToolbar>
       </AppBar>
     </Box>

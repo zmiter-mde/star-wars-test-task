@@ -8,6 +8,10 @@
   text-align: center;
   transform: rotate(-90deg);
   transform-origin: -150% 150%;
+  position: fixed;
+  top: 17px;
+  right: 300px;
+  z-index: -1;
 }
 #lightsaber span {
   display: inline-block;
