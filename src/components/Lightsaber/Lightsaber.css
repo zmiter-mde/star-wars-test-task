@@ -23,12 +23,18 @@
   background: #fff;
   height: 520px;
   border-radius: 7px 7px 2px 2px;
+  z-index: 5;
+  -webkit-transition: all 2s;
+  -moz-transition: all 2s;
+  transition: all 2s;
+}
+.defaultLight {
   box-shadow: 0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px blue,
     0 0 25px blue;
-  z-index: 5;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
+}
+.redLight {
+  box-shadow: 0 0 5px #fff, 0 0 8px #fff, 0 0 12px #fff, 0 0 15px red,
+    0 0 25px red;
 }
 #generator {
   position: relative;

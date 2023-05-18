@@ -1,17 +1,19 @@
-# vite-template-redux
+## Existing Swat Wars Heroes App
+- Maing page with unordered heroes list
+- List supports pagination and search by hero name (default API behavior). On refresh pagination and search are lost
+- By clicking a hero card, navigated to the second "Hero Details" page
+- All the hero fields are mandatory, sometimes NaN comes from BE (as "unknown")
+- Possibility to update hero details to redux and go back to main page
+- On pagination change updated hero details are lost (may be fixed with redux store restructuring or BE simulation)
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+## Next steps
 
-```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
-```
-
-## Goals
-
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+1. Cover pages and components with tests
+2. Move url paths to config
+3. Move colours (and other values) to theme config
+4. Move texts to i18n files
+5. Switch to RTKQuery
+6. Add possibility to save page&search to URL
 
 ## Scripts
 
@@ -20,8 +22,6 @@ npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
 - `preview` - locally preview production build
 - `test` - launch test runner
 
-## Inspiration
+## Production :)
 
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+- [Deployed to Netlify](https://main--roaring-moxie-3ffbe2.netlify.app/)
