@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { Navigate, useParams } from "react-router-dom"
-import CircularProgress from "@mui/material/CircularProgress"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
   loadHeroById,
@@ -8,7 +7,8 @@ import {
   selectRequestStatus,
 } from "../features/heroes/heroesSlice"
 import { HeroEdit } from "../features/heroes/components/HeroEdit"
-import { PageTitle } from "../components/PageTitle"
+import { PageTitle } from "../components/title/PageTitle"
+import { Progress } from "../components/progress/Progress"
 
 const HeroPage = () => {
   const dispatch = useAppDispatch()
@@ -31,7 +31,7 @@ const HeroPage = () => {
   if (requestStatus === "failed") {
     return <Navigate to="/error" />
   } else if (!selectedHero) {
-    return <CircularProgress sx={{ margin: "0 auto" }} />
+    return <Progress />
   }
 
   return (

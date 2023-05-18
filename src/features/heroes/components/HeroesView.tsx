@@ -1,6 +1,6 @@
 import { Grid, styled, Paper } from "@mui/material"
-import { Hero } from "../heroesAPI"
-import { shadow } from "../util"
+import { Hero } from "../../../types"
+import { shadow } from "../../../util"
 
 const HeroItem = styled(Paper)(({ theme }) => ({
   ...theme.typography.body1,

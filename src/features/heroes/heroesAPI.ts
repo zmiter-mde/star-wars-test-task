@@ -1,18 +1,10 @@
 import axios from "axios"
+import { Hero } from "../../types"
 
 // TODO: switch to RTKQuery?
 const baseUrl = "https://swapi.dev/api/"
 // TODO: (never) API doesn't allow limiting atm.
 const DEFAULT_LIMIT = 10
-
-export interface Hero {
-  id: string
-  url: string
-  name: string
-  height: number
-  mass: number
-  homeworld: string
-}
 
 export interface FetchHeroesParams {
   page?: number

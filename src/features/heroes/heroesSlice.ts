@@ -1,13 +1,14 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
+
+import { prepareHeroesData, mergeHeroes } from "../../util"
+import { Hero, RequestStatus } from "../../types"
 import {
   fetchHeroes,
   fetchHero,
   FetchHeroesParams,
-  Hero,
   updateHero,
 } from "./heroesAPI"
-import { prepareHeroesIds, mergeHeroes } from "./util"
 
 export interface HeroesState {
   heroes: Hero[]
@@ -15,7 +16,7 @@ export interface HeroesState {
   totalPages: number
   currentPage: number
   searchPattern: string
-  status: "idle" | "loading" | "failed"
+  status: RequestStatus
   error: string | null
 }
 
@@ -32,9 +33,9 @@ const initialState: HeroesState = {
 export const loadHeroes = createAsyncThunk(
   "heroes/fetch",
   async ({ page = 1, search = "" }: FetchHeroesParams, { dispatch }) => {
-    dispatch(heroesSlice.actions.updateSearch(search))
+    dispatch(updateSearch(search))
     const response = await fetchHeroes({ page, search })
-    dispatch(heroesSlice.actions.setCurrentPage(page))
+    dispatch(setCurrentPage(page))
     return response
   },
 )
@@ -76,9 +77,8 @@ export const heroesSlice = createSlice({
         state.status = "idle"
         state.totalPages = totalPages
         state.totalRecords = totalRecords
-        // Hack to create an illusion of updating backend
         // TODO: (never) Remove mergeHeroes when backend update is ready
-        state.heroes = mergeHeroes(prepareHeroesIds(heroes), state.heroes)
+        state.heroes = mergeHeroes(prepareHeroesData(heroes), state.heroes)
       })
       .addCase(loadHeroes.rejected, (state) => {
         state.status = "failed"
@@ -91,11 +91,11 @@ export const heroesSlice = createSlice({
         state.status = "idle"
         state.totalPages = 1
         state.totalRecords = 1
-        // Hack to create an illusion of updating backend
         // TODO: (never) Remove mergeHeroes when backend update is ready
         state.heroes = mergeHeroes(
-          prepareHeroesIds([action.payload]),
+          // The order is inversed on purpose
           state.heroes,
+          prepareHeroesData([action.payload]),
         )
       })
       .addCase(loadHeroById.rejected, (state, action) => {
@@ -121,7 +121,7 @@ export const heroesSlice = createSlice({
   },
 })
 
-export const { setCurrentPage } = heroesSlice.actions
+export const { setCurrentPage, updateSearch } = heroesSlice.actions
 
 export const selectHeroes = (state: RootState) => state.heroes.heroes
 

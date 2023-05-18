@@ -6,9 +6,9 @@ import Snackbar from "@mui/material/Snackbar"
 import Alert from "@mui/material/Alert"
 import { Button, TextField, styled } from "@mui/material"
 import { useAppDispatch } from "../../../app/hooks"
+import { Hero } from "../../../types"
 import { updateHeroById } from "../heroesSlice"
-import { Hero } from "../heroesAPI"
-import { shadow } from "../util"
+import { shadow } from "../../../util"
 
 const validationSchema = yup.object({
   name: yup.string().required("Name is required"),
@@ -136,8 +136,6 @@ const HeroEdit = ({ hero }: HeroViewProps) => {
           error={formik.touched.mass && Boolean(formik.errors.mass)}
           helperText={formik.touched.mass && formik.errors.mass}
         />
-
-        {/* TODO: <Planet url={hero.homeworld} /> */}
 
         <StyledButton variant="contained" type="submit">
           Update

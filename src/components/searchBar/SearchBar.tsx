@@ -68,6 +68,14 @@ const SearchBar = () => {
     [changeHandler],
   )
 
+  const onSearchChange = useCallback(
+    ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+      setSearch(value)
+      debouncedChangeHandler(value)
+    },
+    [debouncedChangeHandler],
+  )
+
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel()
@@ -83,10 +91,7 @@ const SearchBar = () => {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
-        onChange={({ target: { value } }) => {
-          setSearch(value)
-          debouncedChangeHandler(value)
-        }}
+        onChange={onSearchChange}
         value={search}
       />
     </Search>

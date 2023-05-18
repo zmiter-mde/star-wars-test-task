@@ -1,12 +1,13 @@
-import { Link, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 import { styled } from "@mui/material/styles"
-import { shadow } from "../../features/heroes/util"
+import { shadow } from "../../util"
 import { SearchBar } from "../searchBar/SearchBar"
 import { Lightsaber } from "../Lightsaber/Lightsaber"
+import { Link } from "../link/Link"
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   flexDirection: "column",
@@ -21,57 +22,35 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   },
 }))
 
-const StyledLink = styled(Link)(({ theme }) => ({
-  textDecoration: "none",
-  border: "none",
-  borderRadius: "7px",
-  padding: theme.spacing(0.5, 2),
-  "&:hover": {
-    boxShadow: shadow("green"),
-  },
-  "> div": {
-    fontFamily: "'Star Wars', sans-serif",
-    color: "#EEDB00",
-  },
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: theme.palette.common.black,
+  marginTop: "100px",
 }))
 
 const Header = () => {
   const { pathname } = useLocation()
   return (
-    // TODO: move texts to i18n files
-    <Box sx={{ flexGrow: 1 }}>
+    <Box data-testid="swHeader">
       <Lightsaber />
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "black", marginTop: "100px" }}
-      >
+      <StyledAppBar position="static">
         <StyledToolbar>
-          <StyledLink to="/heroes">
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, width: { xs: "100%", sm: "auto" } }}
-            >
+          <Link to="/heroes">
+            <Typography variant="h6" noWrap component="div">
               Star Wars Heroes
             </Typography>
-          </StyledLink>
+          </Link>
+
           {pathname === "/heroes" ? (
             <SearchBar />
           ) : (
-            <StyledLink to="/heroes">
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, width: { xs: "100%", sm: "auto" } }}
-              >
+            <Link to="/heroes">
+              <Typography variant="h6" noWrap component="div">
                 Back
               </Typography>
-            </StyledLink>
+            </Link>
           )}
         </StyledToolbar>
-      </AppBar>
+      </StyledAppBar>
     </Box>
   )
 }

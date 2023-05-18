@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { CircularProgress } from "@mui/material"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
   loadHeroes,
@@ -9,10 +8,11 @@ import {
   selectRequestStatus,
   selectSearchPattern,
 } from "../features/heroes/heroesSlice"
-import { Hero } from "../features/heroes//heroesAPI"
+import { Hero } from "../types"
 import { HeroesPagination } from "../features/heroes/components/HeroesPagination"
 import { HeroesView } from "../features/heroes/components/HeroesView"
-import { PageTitle } from "../components/PageTitle"
+import { PageTitle } from "../components/title/PageTitle"
+import { Progress } from "../components/progress/Progress"
 
 const HeroesPage = () => {
   const dispatch = useAppDispatch()
@@ -38,7 +38,7 @@ const HeroesPage = () => {
   return (
     <>
       <PageTitle title="All Heroes" />
-      {requestStatus === "loading" && <CircularProgress />}
+      {requestStatus === "loading" && <Progress />}
       {requestStatus === "idle" && (
         <HeroesView heroes={heroes} onClick={viewHero} />
       )}

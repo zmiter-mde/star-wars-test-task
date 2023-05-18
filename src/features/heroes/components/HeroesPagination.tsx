@@ -11,7 +11,7 @@ import {
   setCurrentPage,
   selectRequestStatus,
 } from "../heroesSlice"
-import { shadow } from "../util"
+import { shadow } from "../../../util"
 
 const StyledPagination = styled(Pagination)(({ theme }) => ({
   display: "flex",
