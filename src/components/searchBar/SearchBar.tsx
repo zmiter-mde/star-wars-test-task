@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useMemo } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { styled, alpha } from "@mui/material/styles"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
 import debounce from "lodash.debounce"
-import { useAppDispatch } from "../../app/hooks"
-import { loadHeroes } from "../../features/heroes/heroesSlice"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import {
+  loadHeroes,
+  selectSearchPattern,
+} from "../../features/heroes/heroesSlice"
 
 // Default example search component styling
 const Search = styled("div")(({ theme }) => ({
@@ -50,10 +53,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchBar = () => {
   const dispatch = useAppDispatch()
+  const searchPattern: string = useAppSelector(selectSearchPattern)
+  const [search, setSearch] = useState(searchPattern)
 
   const changeHandler = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(loadHeroes({ search: event.target.value }))
+    (value: string) => {
+      dispatch(loadHeroes({ search: value }))
     },
     [dispatch],
   )
@@ -78,7 +83,11 @@ const SearchBar = () => {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
-        onChange={debouncedChangeHandler}
+        onChange={({ target: { value } }) => {
+          setSearch(value)
+          debouncedChangeHandler(value)
+        }}
+        value={search}
       />
     </Search>
   )
