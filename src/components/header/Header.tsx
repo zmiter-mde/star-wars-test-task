@@ -23,7 +23,8 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 }))
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: theme.palette.common.black,
+  boxShadow: "none",
+  backgroundColor: "transparent",
   marginTop: "100px",
 }))
 

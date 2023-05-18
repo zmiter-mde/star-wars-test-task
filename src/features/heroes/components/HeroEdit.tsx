@@ -42,6 +42,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   "& input": {
     color: theme.palette.common.white,
     boxShadow: shadow("blue"),
+    borderRadius: "7px",
     "&:focus": {
       boxShadow: shadow("green"),
     },
@@ -66,6 +67,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(3),
   backgroundColor: theme.palette.common.black,
   boxShadow: shadow("blue"),
+  minHeight: theme.spacing(7),
+  borderRadius: "7px",
   "&:hover": {
     backgroundColor: theme.palette.common.black,
     boxShadow: shadow("green"),

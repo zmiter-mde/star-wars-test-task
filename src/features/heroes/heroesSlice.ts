@@ -93,9 +93,8 @@ export const heroesSlice = createSlice({
         state.totalRecords = 1
         // TODO: (never) Remove mergeHeroes when backend update is ready
         state.heroes = mergeHeroes(
-          // The order is inversed on purpose
-          state.heroes,
           prepareHeroesData([action.payload]),
+          state.heroes,
         )
       })
       .addCase(loadHeroById.rejected, (state, action) => {
